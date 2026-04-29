@@ -1,9 +1,12 @@
-import dotenv from "dotenv"; // librería para cargar variables de entorno desde un archivo .env
+import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
-//Ejecutamos la libreria dotenv
-dotenv.config();
+// Forzar la ruta correcta del .env
+const __dirname = dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: join(__dirname, ".env") });
 
-export const config = { // exportamos un objeto de configuración con las variables de entorno necesarias para la aplicación
+export const config = {
   db: {
     URI: process.env.DB_URI,
   },
